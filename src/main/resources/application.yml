@@ -1,0 +1,47 @@
+server:
+  port: 8081
+  
+spring:
+  mvc:
+    view:
+      prefix: /views/
+      suffix: .jsp
+#Data jpa
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+#h2-config
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    continue-on-error: true
+    username: sa
+    password:  
+#enable h2 console
+  h2:
+    console:
+      enabled: true
+
+##Email Configration
+  
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: manish.bitp1@gmail.com
+    password: 9931765210
+    
+    
+    properties:
+      mail:
+        smtp:
+          auth: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+          starttls:
+            enable: true
+          
+
+       
