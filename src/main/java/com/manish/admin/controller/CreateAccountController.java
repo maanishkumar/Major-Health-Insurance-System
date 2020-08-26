@@ -1,4 +1,4 @@
-package com.manish.controller;
+package com.manish.admin.controller;
 
 import java.util.List;
 
@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.manish.entity.CreateAccountEntity;
-import com.manish.model.CreateAccount;
-import com.manish.service.CreateAccountService;
+import com.manish.admin.entity.CreateAccountEntity;
+import com.manish.admin.model.CreateAccount;
+import com.manish.admin.service.CreateAccountService;
 
 @Controller
 public class CreateAccountController {
@@ -24,23 +24,24 @@ public class CreateAccountController {
 	public String loadCreateAccountform(Model model) {
 		CreateAccount ca = new CreateAccount();
 		model.addAttribute("account", ca);
-
 		return "CreateAccount";
 	}
 
 	@PostMapping("/create")
 	public String handleCreateAccountform(@ModelAttribute("account") CreateAccount ca, RedirectAttributes attributes) {
-		
+
 		if (ca.getAccountId() != null) {
-			boolean isUpdate = service.saveAccount(ca);
+			boolean isUpdate = service.updateAccount(ca);
 			if (isUpdate) {
-				attributes.addFlashAttribute("UpdateMsg", "Your account is updated successfully..");
+				attributes.addFlashAttribute("UpdateMsg", "Account Updated Successfully..");
+			} else {
+				attributes.addFlashAttribute("UpdErrMsg", "Failed to update account..");
 			}
 		} else {
 			boolean isSaved = service.saveAccount(ca);
 			if (isSaved) {
 				attributes.addFlashAttribute("msg",
-						"Your registration is almost complete ,please check ur mail to unlock it...");
+						"Your Registration is almost complete ,please check ur mail to unlock it...");
 			} else {
 				attributes.addFlashAttribute("errMsg", "Failed to create account..!");
 			}
@@ -66,7 +67,7 @@ public class CreateAccountController {
 	public String deleteAccount(@RequestParam("aid") Integer accountId, RedirectAttributes attributes) {
 		boolean isDeleted = service.deleteAccount(accountId);
 		if (isDeleted) {
-			attributes.addFlashAttribute("DeleteMsg", "Your account is deleted successfully!!..");
+			attributes.addFlashAttribute("DeleteMsg", "Account Deleted Successfully!!..");
 			return "redirect:/viewAccount";
 		}
 		return null;
@@ -76,7 +77,7 @@ public class CreateAccountController {
 	public String activateAccount(@RequestParam("aid") Integer accountId, RedirectAttributes attributes) {
 		boolean isActive = service.activateAccount(accountId);
 		if (isActive) {
-			attributes.addFlashAttribute("ActivateMsg", "Your account is activated  successfully!!..");
+			attributes.addFlashAttribute("ActivateMsg", "Account Activated Successfully!!..");
 			return "redirect:/viewAccount";
 		}
 		return null;

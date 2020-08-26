@@ -21,7 +21,7 @@
 <style>
 body {
 	background-image:
-		url("https://ejournalz.com/wp-content/uploads/2018/11/Health-Insurance-Plan.jpg");
+		url("https://www.policyboss.com/blog/wp-content/uploads/2014/10/5-best-child-insurance-plans-1024x626.jpg");
 }
 </style>
 
@@ -56,7 +56,7 @@ body {
 									class="dropdown-item" href="/viewAccount">View Accounts</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="/loadPlanForm">Create Plan</a> <a
-									class="dropdown-item" href="#">View Plans</a>
+									class="dropdown-item" href="/viewPlan">View Plans</a>
 							</div></li>
 					</ul>
 					<form class="form-inline my-2 my-lg-0">
@@ -76,67 +76,54 @@ body {
 
 				<div class="col-md-4">
 
-					<form:form action="create" modelAttribute="account" method="POST"
-						class="container">
-						<form:hidden path="accountId" />
+					<form:form action="createPlan" modelAttribute="account"
+						method="POST" class="container">
+
+						<form:hidden path="planId" />
+
 						<br></br>
-						<h2 align="left" style="color: black">Create Or Update Account</h2>
-						<p>
-							<font style="color: green"><em>${UpdateMsg}</em></font>
-						</p>
-						<p>
-							<font style="color: green"><em>${UpdErrMsg}</em></font>
-						</p>
-						<p>
-							<font style="color: green"><em>${msg}</em></font>
-						</p>
-						<p>
-							<font style="color: red"><em>${errMsg}</em></font>
-						</p>
+
+						<h2 align="center" style="color: black">Register Or Update
+							Plan</h2>
+						<h4 align="center">
+							<font style="color: white">${UpdateMsg}</font>
+						</h4>
+						<h4 align="center">
+							<font style="color: white">${msg}</font>
+						</h4>
+						<h4>
+							<font style="color: red">${errMsg}</font>
+						</h4>
+
 
 						<div class="form-row mb-3">
-
-							<label>First name</label>
-							<form:input path="firstName" placeholder="First name"
+							<label>Plan Name</label>
+							<form:input path="planName" placeholder="Please enter plan name"
 								class="form-control" required="true" />
 						</div>
-						<div class="form-row mb-3 ">
-							<label>Last name</label>
-							<form:input path="lastName" placeholder="Last name"
-								class="form-control" required="true" />
-
-						</div>
-
 						<div class="form-row mb-3">
-							<label>Email Address</label>
-							<form:input path="email" placeholder="Email ID"
-								class="form-control" required="true" />
+							<label>Plan Description</label>
+							<form:textarea path="planDescription"
+								placeholder="Please enter plan description" class="form-control"
+								rows="3" required="true" />
 						</div>
-
 						<div class="form-row mb-3">
-
-							<label>Gender</label>
-							<form:select class="custom-select" path="gender" required="true">
-								<form:option value="">Choose...</form:option>
-								<form:option value="Male">Male</form:option>
-								<form:option value="FeMale">FeMale</form:option>
-							</form:select>
+							<label>Plan Start Date</label>
+							<form:input path="planStartDate" type="date"
+								placeholder="Please enter plan start date" class="form-control"
+								required="true" />
 						</div>
-
 						<div class="form-row mb-3">
-							<label>Role</label>
-							<form:select class="custom-select" path="role" required="true">
-								<form:option value="">Choose...</form:option>
-								<form:option value="Case Worker">Case Worker</form:option>
-								<form:option value="Admin">Admin</form:option>
-
-							</form:select>
+							<label>Plan End Date</label>
+							<form:input path="planEndDate" type="date"
+								placeholder="Please enter plan end date" class="form-control"
+								required="true" />
 						</div>
 
 
-						<div class="form-row mb-3">
-							<button class="btn btn-md btn-primary btn-block " type="submit">Create/Update
-								Account</button>
+						<div class="form-row">
+							<button class="btn btn-md btn-success btn-block " type="submit">Create/Update
+								Plan</button>
 						</div>
 					</form:form>
 				</div>
@@ -156,11 +143,6 @@ body {
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
 		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
 		crossorigin="anonymous"></script>
-
-
-
-
-
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-package com.manish.model;
+package com.manish.admin.model;
 
 import lombok.Data;
 

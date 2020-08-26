@@ -1,4 +1,4 @@
-package com.manish.controller;
+package com.manish.admin.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,10 +8,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.manish.entity.CreateAccountEntity;
-import com.manish.model.UnlockAccount;
-
-import com.manish.service.CreateAccountService;
+import com.manish.admin.entity.CreateAccountEntity;
+import com.manish.admin.model.UnlockAccount;
+import com.manish.admin.service.CreateAccountService;
 
 @Controller
 public class UnlockAccountController {

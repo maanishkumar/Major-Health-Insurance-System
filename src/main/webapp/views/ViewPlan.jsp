@@ -19,8 +19,9 @@
 	crossorigin="anonymous">
 <style>
 body {
+	
 	background-image:
-		url("https://ejournalz.com/wp-content/uploads/2018/11/Health-Insurance-Plan.jpg");
+		url("https://www.policyboss.com/blog/wp-content/uploads/2014/10/5-best-child-insurance-plans-1024x626.jpg");
 }
 </style>
 
@@ -48,20 +49,7 @@ body {
 	});
 </script>
 
-<script>
-	$("#mySelect").on("change", function() {
-		var opt = $(this).val();
-		$("tr").each(function() {
-			var tr = $(this);
-			tr.show();
-			if (!tr.hasClass(opt)) {
-				tr.hide();
-			}
-		});
-	});
-</script>
-
-<title>Account details</title>
+<title>Plan details</title>
 </head>
 <body>
 	<div class="container-fluid ">
@@ -78,10 +66,11 @@ body {
 
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
-						<li class="nav-item active"><a class="nav-link" href="#">Account Registration
-								<span class="sr-only">(current)</span>
+						<li class="nav-item active"><a class="nav-link" href="#">Account
+								Registration <span class="sr-only">(current)</span>
 						</a></li>
-						<li class="nav-item active"><a class="nav-link" href="#">Data Collection</a></li>
+						<li class="nav-item active"><a class="nav-link" href="#">Data
+								Collection</a></li>
 						<li class="nav-item dropdown active"><a
 							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -90,10 +79,10 @@ body {
 								<a class="dropdown-item" href="/loadForm">Create Account</a> <a
 									class="dropdown-item" href="/viewAccount">View Accounts</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#">Create Plan</a>
-								<a class="dropdown-item" href="#">View Plans</a>
+								<a class="dropdown-item" href="/loadPlanForm">Create Plan</a> <a
+									class="dropdown-item" href="/viewPlan">View Plans</a>
 							</div></li>
-							</ul>
+					</ul>
 					<form class="form-inline my-2 my-lg-0">
 						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
 					</form>
@@ -101,23 +90,10 @@ body {
 			</nav>
 		</div>
 		<br></br>
-		<h2 align="center" style="color: black">VIEW ACCOUNTS</h2>
+		<h2 align="center" style="color: black">VIEW PLANS</h2>
 		<div>
-			<h3 align="center" style="color: red">${DeleteMsg}</h3>
-			<h3 align="center" style="color: green">${ActivateMsg}</h3>
-		</div>
-
-		<div class="container">
-			<form>
-				<div class="form-group">
-					<label for="inputState">Select Role:</label> <select id="mySelect"
-						class="form-control">
-						<option selected>Choose...</option>
-						<option>Case Worker</option>
-						<option>Admin</option>
-					</select>
-				</div>
-			</form>
+			<h3 align="center" style="color: white">${DeleteMsg}</h3>
+			<h3 align="center" style="color: white">${ActivateMsg}</h3>
 		</div>
 
 		<div class="container">
@@ -125,32 +101,31 @@ body {
 				<thead class="thead-dark">
 					<tr>
 						<th scope="col">S.No</th>
-						<th scope="col">Name</th>
-						<th scope="col">Email</th>
-						<th scope="col">Role</th>
-
-						<th scope="col">Account Status</th>
+						<th scope="col">Plan Name</th>
+						<th scope="col">Plan Description</th>
+						<th scope="col">Plan Start Date</th>
+						<th scope="col">Plan End Date</th>
+						
 						<th scope="col">Action</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${accounts}" var="c" varStatus="index">
+					<c:forEach items="${plans}" var="c" varStatus="index">
 						<tr>
 							<td>${index.count}</td>
-							<td>${c.name}</td>
-							<td>${c.email}</td>
-							<td>${c.role}</td>
-							<td>${c.lockStatus}</td>
+							<td>${c.planName}</td>
+							<td>${c.planDescription}</td>
+							<td>${c.planStartDate}</td>
+							<td>${c.planEndDate}</td>
 
 							<td><a class="btn btn-primary"
-								href="/editAccount?aid=${c.accountId}" role="button">Edit</a> <c:if
-									test="${c.deletedSwitch =='Y'}">
-									<a class="btn btn-success"
-										href="/activateAccount?aid=${c.accountId}" role="button"
-										onclick="return activateConfirm()">Activate</a>
-								</c:if> <c:if test="${c.deletedSwitch =='N'}">
+								href="/editPlan?pid=${c.planId}" role="button">Edit</a> <c:if
+									test="${c.activeSwitch =='N'}">
+									<a class="btn btn-success" href="/activatePlan?pid=${c.planId}"
+										role="button" onclick="return activateConfirm()">Activate</a>
+								</c:if> <c:if test="${c.activeSwitch =='Y'}">
 									<a class="btn btn-danger"
-										href="/deleteAccount?aid=${c.accountId}" role="button"
+										href="/deletePlan?pid=${c.planId}" role="button"
 										onclick="return deleteConfirm()">Delete</a>
 								</c:if></td>
 						</tr>

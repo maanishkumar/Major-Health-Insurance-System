@@ -1,4 +1,4 @@
-package com.manish.entity;
+package com.manish.admin.entity;
 
 
 import java.util.Date;

@@ -1,10 +1,10 @@
-package com.manish.repository;
+package com.manish.admin.repository;
 
 import java.io.Serializable;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.manish.entity.CreateAccountEntity;
+import com.manish.admin.entity.CreateAccountEntity;
 
 public interface CreateAccountRepository extends JpaRepository<CreateAccountEntity, Serializable> {
 

@@ -1,4 +1,4 @@
-package com.manish.service;
+package com.manish.admin.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -7,11 +7,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.manish.entity.CreateAccountEntity;
-
-import com.manish.model.CreateAccount;
-
-import com.manish.repository.CreateAccountRepository;
+import com.manish.admin.entity.CreateAccountEntity;
+import com.manish.admin.model.CreateAccount;
+import com.manish.admin.repository.CreateAccountRepository;
 import com.manish.utils.EmailUtils;
 import com.manish.utils.PwdUtils;
 
@@ -40,7 +38,15 @@ public class CreateAccountServiceImpl implements CreateAccountService {
 			return true;
 		}
 		return false;
-
+	}
+	
+	@Override
+	public boolean updateAccount(CreateAccount ca) {
+		CreateAccountEntity entity = repository.findById(ca.getAccountId()).get();
+		BeanUtils.copyProperties(ca, entity);
+		entity.setName(entity.getFirstName() + " " + entity.getLastName());
+		CreateAccountEntity isUpdated = repository.save(entity);
+		return isUpdated!=null;
 	}
 
 	@Override
@@ -97,6 +103,8 @@ public class CreateAccountServiceImpl implements CreateAccountService {
 		}
 		return null;
 	}
+
+
 
 	
 
